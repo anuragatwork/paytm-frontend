@@ -27,7 +27,7 @@ export const Signup = () => {
           }
         };
         try {
-          const res = await axios.get('http://localhost:3000/api/v1/me',config);
+          const res = await axios.get('https://paytm-side-project.onrender.com/api/v1/me',config);
           console.log(res);
           if (res.data.valid) {
             alert("you are already signed in please log out first to visit signup")
@@ -65,7 +65,7 @@ export const Signup = () => {
             }
             else{
               try{
-                const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+                const response = await axios.post("https://paytm-side-project.onrender.com/api/v1/user/signup", {
                   username,
                   firstName,
                   lastName,

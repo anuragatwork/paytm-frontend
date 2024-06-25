@@ -28,7 +28,7 @@ function App() {
         }
       };
       try {
-        const res = await axios.get('http://localhost:3000/api/v1/me',config);
+        const res = await axios.get('https://paytm-side-project.onrender.com/api/v1/me',config);
         console.log(res);
         if (res.data.valid) {
           setValidToken(true);

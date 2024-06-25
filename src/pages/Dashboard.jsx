@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom"
 
 export const Dashboard = () => {
-    const [balance,setBalance]=useState(1000);
+    const [balance,setBalance]=useState(0);
     const[username,setUsername]=useState('-');
     const navigate=useNavigate();
     useEffect(() => {
@@ -23,7 +23,7 @@ export const Dashboard = () => {
             }
           };
           try {
-            const res = await axios.get('http://localhost:3000/api/v1/me',config);
+            const res = await axios.get('https://paytm-side-project.onrender.com/api/v1/me',config);
             //set required variables
             setBalance(parseInt(res.data.balance));
             setUsername(res.data.name[0].toUpperCase());

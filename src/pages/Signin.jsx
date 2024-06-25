@@ -16,7 +16,7 @@ export const Signin = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await axios.get('http://localhost:3000/api/v1/me');
+          const res = await axios.get('https://paytm-side-project.onrender.com/api/v1/me');
           console.log(res.data);
           if (res.data) {
             navigate("/dashboard");
@@ -31,7 +31,7 @@ export const Signin = () => {
 
     async function onClickHandler(){
       try{
-        const response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+        const response = await axios.post("https://paytm-side-project.onrender.com/api/v1/user/signin", {
           username,
           password
         });

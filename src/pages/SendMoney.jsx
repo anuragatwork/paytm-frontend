@@ -42,7 +42,7 @@ export const SendMoney = () => {
                                 try{
                                     const inputPlaceholder=document.getElementById("amount");
                                     if(money>0){
-                                        const response=await axios.post("http://localhost:3000/api/v1/account/transfer", {
+                                        const response=await axios.post("https://paytm-side-project.onrender.com/api/v1/account/transfer", {
                                             to: id,
                                             amount:money
                                         },
