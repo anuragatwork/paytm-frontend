@@ -1,8 +1,23 @@
 import { useSearchParams } from 'react-router-dom';
 import axios from "axios";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BottomWarning } from '../components/BottomWarning';
 export const SendMoney = () => {
+    //get balance from backend
+    async function getBalance(){
+        const config = {
+            headers: {
+              'Authorization': 'Bearer '+ localStorage.getItem("token")
+            }
+          };
+        const response=await axios.get("https://paytm-side-project.onrender.com/api/v1/me",config);
+        setBalance(Math.floor(response.data.balance));
+        // console.log(response.data);
+    }
+    useEffect(()=>{
+        getBalance();
+    },[])
+    const [balance,setBalance]=useState(0);
     const [searchParams] = useSearchParams();
     const id = searchParams.get("id");
     const name = searchParams.get("name");
@@ -17,8 +32,9 @@ export const SendMoney = () => {
                         <div class="flex items-center space-x-4">
                             <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center">
                             <span class="text-2xl text-white">{name[0].toUpperCase()}</span>
+                            
                             </div>
-                            <h3 class="text-2xl font-semibold">{name}</h3>
+                            <h3 class="text-1xl font-semibold">your balance : {balance}</h3>
                         </div>
                         <div class="space-y-4">
                             <div class="space-y-2">
@@ -50,10 +66,13 @@ export const SendMoney = () => {
                                         )
                                         setMoney(0);
                                         inputPlaceholder.value='Enter amount ';
+                                        getBalance();
                                         alert("transfer sucessfull");
+                                        //change the balance
                                     }
                                     else{
-                                        alert("please enter a valid input to transfer money , transfer unsuccessfull")
+                                        alert("please enter a valid input to transfer money , transfer unsuccessfull");
+                                        inputPlaceholder.value='Enter amount ';
                                     }
                                 
                                 }

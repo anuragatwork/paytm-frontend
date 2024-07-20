@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 
 export const Dashboard = () => {
     const [balance,setBalance]=useState(0);
-    const[username,setUsername]=useState('-');
+    const [username,setUsername]=useState('-');
     const navigate=useNavigate();
     useEffect(() => {
         const fetchData = async () => {
